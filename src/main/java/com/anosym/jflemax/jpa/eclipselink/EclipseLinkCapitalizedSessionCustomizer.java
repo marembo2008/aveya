@@ -5,7 +5,6 @@
  */
 package com.anosym.jflemax.jpa.eclipselink;
 
-import com.anosym.utilities.Utility;
 import java.sql.SQLException;
 import org.eclipse.persistence.config.SessionCustomizer;
 import org.eclipse.persistence.descriptors.ClassDescriptor;
@@ -23,7 +22,8 @@ public class EclipseLinkCapitalizedSessionCustomizer implements SessionCustomize
     for (ClassDescriptor descriptor : session.getDescriptors().values()) {
       //Only change the table name for non-embedable entities with no @Table already
       if (!descriptor.getTables().isEmpty() && descriptor.getAlias().equalsIgnoreCase(descriptor.getTableName())) {
-        String tableName = Utility.capitalize(descriptor.getTableName());
+        Class c = descriptor.getJavaClass();
+        String tableName = c.getSimpleName();
         descriptor.setTableName(tableName);
         for (IndexDefinition index : descriptor.getTables().get(0).getIndexes()) {
           index.setTargetTable(tableName);
