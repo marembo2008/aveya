@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.anosym.jflemax.bean.constraint;
+package com.anosym.jflemax.validation.constraint;
 
-import com.anosym.jflemax.bean.constraint.validator.MaxLengthConstraintValidator;
+import com.anosym.jflemax.validation.constraint.validator.SequenceConstraintValidator;
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -15,22 +15,20 @@ import javax.validation.Constraint;
 import javax.validation.Payload;
 
 /**
- * can only be on a string field. The length of the string must not be larger than the specified
- * value.
  *
  * @author marembo
  */
 @Documented
 @Retention(RetentionPolicy.RUNTIME)
-@Target({ElementType.METHOD, ElementType.FIELD})
-@Constraint(validatedBy = MaxLengthConstraintValidator.class)
-public @interface MaxLength {
+@Target({ElementType.TYPE})
+@Constraint(validatedBy = SequenceConstraintValidator.class)
+public @interface Sequence {
 
-  String message() default "Value character length exceeds specified value";
+  String message() default "Invalid field type";
 
   Class<?>[] groups() default {};
 
   Class<? extends Payload>[] payload() default {};
 
-  int value();
+  SequenceOption[] fields();
 }

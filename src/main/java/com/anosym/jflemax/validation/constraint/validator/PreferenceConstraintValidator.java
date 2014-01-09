@@ -2,9 +2,9 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.anosym.jflemax.bean.constraint.validator;
+package com.anosym.jflemax.validation.constraint.validator;
 
-import com.anosym.jflemax.bean.constraint.Preference;
+import com.anosym.jflemax.validation.constraint.Preference;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.validation.ConstraintValidator;

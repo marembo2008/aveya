@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.anosym.jflemax.bean.constraint;
+package com.anosym.jflemax.validation.constraint;
 
-import com.anosym.jflemax.bean.constraint.validator.MinLengthConstraintValidator;
+import com.anosym.jflemax.validation.constraint.validator.MinLengthConstraintValidator;
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

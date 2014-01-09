@@ -2,10 +2,10 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.anosym.jflemax.bean.constraint;
+package com.anosym.jflemax.validation.constraint;
 
-import com.anosym.jflemax.bean.constraint.validator.PreferenceHandler;
-import com.anosym.jflemax.bean.constraint.validator.PreferenceConstraintValidator;
+import com.anosym.jflemax.validation.constraint.validator.PreferenceHandler;
+import com.anosym.jflemax.validation.constraint.validator.PreferenceConstraintValidator;
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.anosym.jflemax.bean.validation.series;
+package com.anosym.jflemax.validation.constraint.series;
 
 import com.anosym.vjax.VXMLBindingException;
 import com.anosym.vjax.annotations.v3.Converter;

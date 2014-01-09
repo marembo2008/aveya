@@ -3,11 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.anosym.jflemax.bean.constraint.validator;
+package com.anosym.jflemax.validation.constraint.validator;
 
-import com.anosym.jflemax.bean.constraint.Sequence;
-import com.anosym.jflemax.bean.constraint.SequenceOption;
-import com.anosym.jflemax.bean.validation.series.SeriesSequence;
+import com.anosym.jflemax.validation.constraint.Sequence;
+import com.anosym.jflemax.validation.constraint.SequenceOption;
+import com.anosym.jflemax.validation.constraint.series.SeriesSequence;
 import com.anosym.utilities.Utility;
 import java.lang.reflect.Field;
 import java.util.Random;
