@@ -1,9 +1,11 @@
 /*
- * To change this template, choose Tools | Templates
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.anosym.jflemax.bean.validation;
+package com.anosym.jflemax.bean.constraint;
 
+import com.anosym.jflemax.bean.constraint.validator.NotEmptyValidator;
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -16,17 +18,15 @@ import javax.validation.Payload;
  *
  * @author marembo
  */
-@Documented
 @Retention(RetentionPolicy.RUNTIME)
-@Target({ElementType.TYPE})
-@Constraint(validatedBy = PreferenceConstraintValidator.class)
-public @interface Preference {
+@Target({ElementType.FIELD, ElementType.METHOD})
+@Documented
+@Constraint(validatedBy = NotEmptyValidator.class)
+public @interface NotEmpty {
 
-  String message() default "Value is invalid";
+  String message() default "The list must not be empty";
 
   Class<?>[] groups() default {};
 
   Class<? extends Payload>[] payload() default {};
-
-  Class<? extends PreferenceHandler> handler();
 }

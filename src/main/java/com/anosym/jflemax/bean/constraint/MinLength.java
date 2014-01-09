@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.anosym.jflemax.bean.validation;
+package com.anosym.jflemax.bean.constraint;
 
+import com.anosym.jflemax.bean.constraint.validator.MinLengthConstraintValidator;
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -14,18 +15,22 @@ import javax.validation.Constraint;
 import javax.validation.Payload;
 
 /**
+ * can only be on a string field. The length of the string must not be lesser than the specified
+ * value. The value cannot be null.
  *
  * @author marembo
  */
-@Retention(RetentionPolicy.RUNTIME)
-@Target({ElementType.FIELD, ElementType.METHOD})
 @Documented
-@Constraint(validatedBy = NotEmptyValidator.class)
-public @interface NotEmpty {
+@Retention(RetentionPolicy.RUNTIME)
+@Target({ElementType.METHOD, ElementType.FIELD})
+@Constraint(validatedBy = MinLengthConstraintValidator.class)
+public @interface MinLength {
 
-  String message() default "The list must not be empty";
+  String message() default "Value character length is less than specified value";
 
   Class<?>[] groups() default {};
 
   Class<? extends Payload>[] payload() default {};
+
+  int value();
 }

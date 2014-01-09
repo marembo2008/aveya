@@ -5,9 +5,9 @@
  */
 package com.anosym.jflemax.bean.validation.series;
 
-import com.anosym.jflemax.bean.validation.Sequence;
-import com.anosym.jflemax.bean.validation.SequenceConstraintValidator;
-import com.anosym.jflemax.bean.validation.SequenceOption;
+import com.anosym.jflemax.bean.constraint.Sequence;
+import com.anosym.jflemax.bean.constraint.validator.SequenceConstraintValidator;
+import com.anosym.jflemax.bean.constraint.SequenceOption;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
