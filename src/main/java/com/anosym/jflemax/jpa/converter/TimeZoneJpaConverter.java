@@ -15,7 +15,7 @@ import javax.persistence.Converter;
  * @author marembo
  */
 @Converter(autoApply = true)
-public class TimeZonJpaConverter implements AttributeConverter<TimeZone, String> {
+public class TimeZoneJpaConverter implements AttributeConverter<TimeZone, String> {
 
   public String convertToDatabaseColumn(TimeZone attribute) {
     return attribute == null ? null : attribute.getID();

@@ -19,6 +19,7 @@ import javax.persistence.Converter;
 @Converter(autoApply = true)
 public class AmountJpaConverter implements AttributeConverter<Amount, String> {
 
+  @SuppressWarnings("null")
   public String convertToDatabaseColumn(Amount attribute) {
     return attribute == null ? (attribute.getCurrency().getCurrencyCode() + ":" + attribute.getValue()) : null;
   }
