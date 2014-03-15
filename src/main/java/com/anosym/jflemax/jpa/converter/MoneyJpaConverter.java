@@ -19,10 +19,10 @@ import javax.persistence.Converter;
 @Converter(autoApply = true)
 public class MoneyJpaConverter implements AttributeConverter<Money, String> {
 
-  @SuppressWarnings("null")
   public String convertToDatabaseColumn(Money attribute) {
-    String code = attribute.getCurrency().getCountryCode().getIsoCode() + ":" + attribute.getCurrency().getCurrencySymbol() + ":" + attribute.getValue();
-    return attribute == null ? code : null;
+    return attribute != null
+            ? attribute.getCurrency().getCountryCode().getIsoCode() + ":" + attribute.getCurrency().getCurrencySymbol() + ":" + attribute.getValue()
+            : null;
   }
 
   public Money convertToEntityAttribute(String dbData) {
