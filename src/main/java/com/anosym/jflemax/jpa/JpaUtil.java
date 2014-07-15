@@ -18,52 +18,67 @@ import javax.persistence.MappedSuperclass;
  */
 public class JpaUtil {
 
-  private static Field getIdField(Class<?> cls) {
-    for (Field f : cls.getDeclaredFields()) {
-      if (f.getAnnotation(Id.class) != null) {
-        return f;
-      }
-    }
-    //if we reach here, we try the super class only if it is annotated @Entity or @MappedSupperclass
-    cls = cls.getSuperclass();
-    if (cls.getAnnotation(Entity.class) != null || cls.getAnnotation(MappedSuperclass.class) != null) {
-      return getIdField(cls);
-    }
-    return null;
-  }
-
-  private static Method getIdMethod(Class<?> cls) {
-    for (Method m : cls.getMethods()) {
-      if (m.getAnnotation(Id.class) != null) {
-        return m;
-      }
-    }
-    return null;
-  }
-
-  public static String getEntityId(Object entity) {
-    String idValue = null;
-    try {
-      Field f = getIdField(entity.getClass());
-      if (f != null) {
-        f.setAccessible(true);
-        Object idValue_ = f.get(entity);
-        if (idValue_ != null) {
-          idValue = idValue_.toString();
+    public static Field getIdField(Class<?> cls) {
+        for (Field f : cls.getDeclaredFields()) {
+            if (f.getAnnotation(Id.class) != null) {
+                return f;
+            }
         }
-      } else {
-        Method m = getIdMethod(entity.getClass());
-        if (m != null) {
-          m.setAccessible(true);
-          Object idValue_ = m.invoke(entity, new Object[]{});
-          if (idValue_ != null) {
-            idValue = idValue_.toString();
-          }
+        //if we reach here, we try the super class only if it is annotated @Entity or @MappedSupperclass
+        cls = cls.getSuperclass();
+        if (cls.getAnnotation(Entity.class) != null || cls.getAnnotation(MappedSuperclass.class) != null) {
+            return getIdField(cls);
         }
-      }
-    } catch (Exception e) {
-      Logger.getLogger(JpaUtil.class.getName()).log(Level.SEVERE, null, e);
+        return null;
     }
-    return idValue;
-  }
+
+    public static Method getIdMethod(Class<?> cls) {
+        for (Method m : cls.getMethods()) {
+            if (m.getAnnotation(Id.class) != null) {
+                return m;
+            }
+        }
+        return null;
+    }
+
+    public static String getEntityId(Object entity) {
+        String idValue = null;
+        try {
+            Field f = getIdField(entity.getClass());
+            if (f != null) {
+                f.setAccessible(true);
+                Object idValue_ = f.get(entity);
+                if (idValue_ != null) {
+                    idValue = idValue_.toString();
+                }
+            } else {
+                Method m = getIdMethod(entity.getClass());
+                if (m != null) {
+                    m.setAccessible(true);
+                    Object idValue_ = m.invoke(entity, new Object[]{});
+                    if (idValue_ != null) {
+                        idValue = idValue_.toString();
+                    }
+                }
+            }
+        } catch (Exception e) {
+            Logger.getLogger(JpaUtil.class.getName()).log(Level.SEVERE, null, e);
+        }
+        return idValue;
+    }
+
+    public static Object findEntityId(Object entity) throws Exception {
+        Field f = getIdField(entity.getClass());
+        if (f != null) {
+            f.setAccessible(true);
+            return f.get(entity);
+        } else {
+            Method m = getIdMethod(entity.getClass());
+            if (m != null) {
+                m.setAccessible(true);
+                return m.invoke(entity, new Object[]{});
+            }
+        }
+        throw new IllegalArgumentException("Entity does not have ID field");
+    }
 }
