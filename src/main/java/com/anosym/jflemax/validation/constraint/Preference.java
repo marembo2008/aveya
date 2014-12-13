@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.anosym.jflemax.validation.constraint;
 
 import com.anosym.jflemax.validation.constraint.validator.PreferenceHandler;
@@ -24,11 +20,11 @@ import javax.validation.Payload;
 @Constraint(validatedBy = PreferenceConstraintValidator.class)
 public @interface Preference {
 
-  String message() default "Value is invalid";
+    String message() default "Value is invalid";
 
-  Class<?>[] groups() default {};
+    Class<?>[] groups() default {};
 
-  Class<? extends Payload>[] payload() default {};
+    Class<? extends Payload>[] payload() default {};
 
-  Class<? extends PreferenceHandler> handler();
+    Class<? extends PreferenceHandler> handler();
 }
